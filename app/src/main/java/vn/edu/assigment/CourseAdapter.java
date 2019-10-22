@@ -43,7 +43,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseHolder> {
             @Override
             public void onClick(View v) {
                 try {
-                    //Couser couser=couserList.get(holder.getLayoutPosition());
                     long[] result = appDataBase.courseDao().insert(couser);
 
                     if (result != null) {

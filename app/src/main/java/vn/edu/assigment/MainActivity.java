@@ -24,6 +24,27 @@ private ImageView imgCourse,imgMaps,imgNews,imgSocial;
                 startActivity(new Intent(MainActivity.this,CourseActivity.class));
             }
         });
+
+        imgNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Xml_Activity.class));
+            }
+        });
+
+        imgMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,MapsActivity.class));
+            }
+        });
+
+        imgSocial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,FacebookActivity.class));
+            }
+        });
     }
 
     private void init() {

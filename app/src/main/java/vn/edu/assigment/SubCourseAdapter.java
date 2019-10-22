@@ -1,6 +1,8 @@
 package vn.edu.assigment;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,10 +41,30 @@ public class SubCourseAdapter extends RecyclerView.Adapter<SubHolder> {
         holder.imgDeleteInfor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                appDataBase.courseDao().delete(couser);
-                couserList.remove(position);
-                notifyDataSetChanged();
-                Toast.makeText(context,"Hủy khóa học thành công",Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Bạn có muốn xóa dữ liệu?");
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(context, "Đã hủy thao tác!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        appDataBase.courseDao().delete(couser);
+                        couserList.remove(position);
+                        notifyDataSetChanged();
+
+                        Toast.makeText(context, "Đã hủy khóa học: " + couser.name, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                builder.create();
+                builder.show();
+
             }
         });
 
